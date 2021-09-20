@@ -1,34 +1,77 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-
+import math
 from typing import List
 
 
 def convert_to_absolute(number: float) -> float:
-    return 0
+    if number < 0:
+        return(-number)
+    else:
+        return(number)
 
 
 def use_prefixes() -> List[str]:
     prefixes, suffixe = 'JKLMNOPQ', 'ack'
-
-    return [""]
+    list = []
+    for prefixe in prefixes:
+        list.append(prefixe+suffixe)
+    return list
 
 
 def prime_integer_summation() -> int:
-    return 0
+    liste_premiers = []
+    nombre_teste = 2
+    while len(liste_premiers) < 100:
+        prime = True
+        root = math.sqrt(nombre_teste)
+        for premier in liste_premiers:
+            if nombre_teste%premier == 0:
+                prime = False
+                break
+            if premier >= root:
+                break
+        if prime:
+            liste_premiers.append(nombre_teste)
+        nombre_teste += 1
+    return sum(liste_premiers)
+
 
 
 def factorial(number: int) -> int:
-    return 0
+    factorielle = number
+    for produit in range(1,number):
+        factorielle *= produit
+    return(factorielle)
 
 
 def use_continue() -> None:
-    pass
+    for a in range(1,11):
+        if a == 5:
+            continue
+        else:
+            print(a)
 
+def verify_age_one_group(group):
+    if len(group) < 3 or len(group) > 10:
+        return False
+    elif 25 in group:
+        return True
+    else:
+        for individu in group:
+            if individu < 18:
+                return False
+            if individu > 70 and 50 in group:
+                return False
+    return (True)
 
 def verify_ages(groups: List[List[int]]) -> List[bool]:
-    return []
+    liste_accepte = []
+    for group in groups:
+        liste_accepte.append(verify_age_one_group(group))
+    return(liste_accepte)
+
 
 
 def main() -> None:
